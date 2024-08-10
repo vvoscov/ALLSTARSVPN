@@ -137,9 +137,9 @@ function installWireGuard() {
 			apt-get install unzip
 			apt-get install python3-pip -y
 			wget https://github.com/vvoscov/ALLSTARSVPN/archive/refs/heads/main.zip
-			unzip master.zip
-			rm master.zip
-			pip install -r "$(pwd)/ALLSTARSVPN-master/requirements.txt"
+			unzip ALLSTARSVPN-main.zip
+			rm ALLSTARSVPN-main.zip
+			pip install -r "$(pwd)/ALLSTARSVPN-main/requirements.txt"
 			echo "{
 \"admin_tg_id\": ${ADMIN_ID_BOT},
 \"one_month_cost\": 350,
@@ -147,8 +147,8 @@ function installWireGuard() {
 \"UTC_time\": 3,
 \"tg_token\": \"${API_TOKEN_BOT}\",
 \"tg_shop_token\": \"${API_PAYMENT_BOT}\"
-}" >"$(pwd)/ALLSTARSVPN-master/config.json"
-			chmod 744 -R $(pwd)/ALLSTARSVPN-master/
+}" >"$(pwd)/ALLSTARSVPN-main/config.json"
+			chmod 744 -R $(pwd)/ALLSTARSVPN-main/
 			echo "[Unit]
 Description=Admin Bot for Wireguard
 After=multi-user.target
@@ -157,8 +157,8 @@ After=multi-user.target
 Type=simple
 Restart=always
 RestartSec=15
-WorkingDirectory=$(pwd)/ALLSTARSVPN-master
-ExecStart=/usr/bin/python3 $(pwd)/ALLSTARSVPN-master/main.py
+WorkingDirectory=$(pwd)/ALLSTARSVPN-main
+ExecStart=/usr/bin/python3 $(pwd)/ALLSTARSVPN-main/main.py
 User=root
 
 [Install]
