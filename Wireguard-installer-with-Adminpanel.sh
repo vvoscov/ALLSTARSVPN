@@ -136,10 +136,10 @@ function installWireGuard() {
 		if [[ ${BOT_AUTO_INSTALL} == '1' ]]; then
 			apt-get install unzip
 			apt-get install python3-pip -y
-			wget https://github.com/Obi0Wan0Kenobi/ObiVpn/archive/refs/heads/master.zip
+			wget https://github.com/vvoscov/ALLSTARSVPN/archive/refs/heads/main.zip
 			unzip master.zip
 			rm master.zip
-			pip install -r "$(pwd)/ObiVpn-master/requirements.txt"
+			pip install -r "$(pwd)/ALLSTARSVPN-master/requirements.txt"
 			echo "{
 \"admin_tg_id\": ${ADMIN_ID_BOT},
 \"one_month_cost\": 350,
@@ -147,8 +147,8 @@ function installWireGuard() {
 \"UTC_time\": 3,
 \"tg_token\": \"${API_TOKEN_BOT}\",
 \"tg_shop_token\": \"${API_PAYMENT_BOT}\"
-}" >"$(pwd)/ObiVpn-master/config.json"
-			chmod 744 -R $(pwd)/ObiVpn-master/
+}" >"$(pwd)/ALLSTARSVPN-master/config.json"
+			chmod 744 -R $(pwd)/ALLSTARSVPN-master/
 			echo "[Unit]
 Description=Admin Bot for Wireguard
 After=multi-user.target
@@ -157,14 +157,14 @@ After=multi-user.target
 Type=simple
 Restart=always
 RestartSec=15
-WorkingDirectory=$(pwd)/ObiVpn-master
-ExecStart=/usr/bin/python3 $(pwd)/ObiVpn-master/main.py
+WorkingDirectory=$(pwd)/ALLSTARSVPN-master
+ExecStart=/usr/bin/python3 $(pwd)/ALLSTARSVPN-master/main.py
 User=root
 
 [Install]
-WantedBy=multi-user.target">"/etc/systemd/system/AdminBotXAKEP.service"
+WantedBy=multi-user.target">"/etc/systemd/system/ALLSTARSVPN.service"
 			systemctl daemon-reload
-			sudo systemctl enable AdminBotXAKEP.service
+			sudo systemctl enable ALLSTARSVPN.service
 			clear
 			echo "Installed Bot"
 		fi
@@ -256,7 +256,7 @@ net.ipv6.conf.all.forwarding = 1" >/etc/sysctl.d/wg.conf
 	clear
 	echo "Wireguard Installed!!!"
 	if [[ ${BOT_AUTO_INSTALL} == '1' ]]; then
-		sudo systemctl start AdminBotXAKEP.service
+		sudo systemctl start ALLSTARSVPN.service
 	fi
 	# WireGuard might not work if we updated the kernel. Tell the user to reboot
 	if [[ ${WG_RUNNING} -ne 0 ]]; then
