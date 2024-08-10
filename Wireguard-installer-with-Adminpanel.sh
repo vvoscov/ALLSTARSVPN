@@ -137,8 +137,8 @@ function installWireGuard() {
 			apt-get install unzip
 			apt-get install python3-pip -y
 			wget https://github.com/vvoscov/ALLSTARSVPN/archive/refs/heads/main.zip
-			unzip ALLSTARSVPN-main.zip
-			rm ALLSTARSVPN-main.zip
+			unzip main.zip
+			rm main.zip
 			pip install -r "$(pwd)/ALLSTARSVPN-main/requirements.txt"
 			echo "{
 \"admin_tg_id\": ${ADMIN_ID_BOT},
